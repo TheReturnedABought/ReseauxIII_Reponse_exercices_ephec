@@ -1,0 +1,32 @@
+R1(config)#ipv6 unicast-routing 
+R1(config)#ipv6 router eigrp 1
+R1(config-rtr)#eigrp router-id 1.1.1.1
+R1(config-rtr)#no shutdown
+R1(config)#int se0/0/0
+R1(config-if)#ipv6 eigrp 1
+R1(config)#int se0/0/1
+R1(config-if)#ipv6 eigrp 1
+R1(config)#int g0/0
+R1(config-if)#ipv6 eigrp 1
+
+R2(config)#ipv6 unicast-routing 
+R2(config)#ipv6 router eigrp 1
+R2(config-rtr)#eigrp router-id 1.1.1.1
+R2(config-rtr)#no shutdown
+R2(config)#int se0/0/0
+R2(config-if)#ipv6 eigrp 1
+R2(config)#int se0/0/1
+R2(config-if)#ipv6 eigrp 1
+R2(config)#int g0/0
+R2(config-if)#ipv6 eigrp 1
+
+R3(config)#ipv6 unicast-routing 
+R3(config)#ipv6 router eigrp 1
+R3(config-rtr)#eigrp router-id 1.1.1.1
+R3(config-rtr)#no shutdown
+R3(config)#int se0/0/0
+R3(config-if)#ipv6 eigrp 1
+R3(config)#int se0/0/1
+R3(config-if)#ipv6 eigrp 1
+R3(config)#int g0/0
+R3(config-if)#ipv6 eigrp 1
