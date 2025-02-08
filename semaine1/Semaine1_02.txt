@@ -1,0 +1,55 @@
+R1(config)# router eigrp 1
+
+R1(config-router)# network 172.16.1.0 0.0.0.255
+
+R1(config-router)# network 172.16.3.0 0.0.0.3
+
+R1(config-router)# network 192.168.10.4 0.0.0.3
+
+R1(config-router)# passive-interface g0/0
+
+R1(config-router)# no auto-summary
+
+R2(config)#router eigrp 1
+
+R2(config-router)#network 172.16.2.0 0.0.0.255
+
+R2(config-router)#network 172.16.3.0 0.0.0.3
+
+R2(config-router)#network 192.168.10.8 0.0.0.3
+
+R2(config-router)# passive-interface g0/0
+
+R2(config-router)# no auto-summary
+
+
+R3(config)#router eigrp 1
+
+R3(config-router)#network 192.168.1.0 0.0.0.255
+
+R3(config-router)#network 192.168.10.4 0.0.0.3
+
+R3(config-router)#network 192.168.10.8 0.0.0.3
+
+R3(config-router)# passive-interface g0/0
+
+R3(config-router)# no auto-summary
+
+Partie 2
+a.     Quelle commande permet d'afficher les voisins détectés par EIGRP ?
+show ip eigrp neighbors
+
+a.     Quelle commande permet d'afficher les paramètres et d'autres informations concernant l'état actuel des processus du protocole de routage IPv4 actifs configurés sur le routeur ?
+show ip protocols 
+
+b.    Sur R2, saisissez la commande répertoriée à l'étape 2a et répondez aux questions suivantes :
+
+
+Combien de routeurs partagent des informations de routage avec R2 ?
+2
+
+Où se trouvent ces informations ?
+Dans la parite "Routing Information Sources:"
+
+Quel est le nombre maximum de sauts ?
+4
