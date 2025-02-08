@@ -1,0 +1,32 @@
+Étape 1 :     vérifiez la configuration EIGRP sur chaque routeur configuré pour l'adressage IPv4.
+IPv4-Edge#show ip route
+Branch-1#show ip route
+Branch-2#show ip route
+
+Étape 2 :     configurez une route par défaut IPv4.
+IPv4-Edge(config)#ip route 0.0.0.0 0.0.0.0 se0/1/0
+
+Étape 3 :     propagation de la route par défaut dans EIGRP.
+IPv4-Edge(config)#router eigrp 1
+IPv4-Edge(config-router)#redistribute static
+
+ Étape 4 :     vérifiez que la route par défaut IPv4 est propagée.
+Branch-1#show ip route	--> D*EX 0.0.0.0/0 [170/7289856] via 172.31.6.1, 00:00:38, Serial0/0/0
+Branch-2#show ip route	--> D*EX 0.0.0.0/0 [170/7289856] via 172.31.7.1, 00:00:38, Serial0/0/1
+
+Étape 1 :     vérifiez la configuration EIGRP sur chaque routeur configuré pour l'adressage IPv6.
+IPv6-Edge#show ipv6 route
+Branch-3#show ipv6 route
+Branch-4#show ipv6 route
+
+Étape 2 :     configurez une route par défaut IPv6.
+IPv6-Edge(config)#ipv6 route ::/0 Se0/1/0
+
+Étape 3 :     propagation de la route par défaut dans EIGRP.
+
+IPv6-Edge(config)#ipv6 router eigrp 1
+IPv6-Edge(config-rtr)#redistribute static 
+
+Étape 4 :     vérifiez que la route par défaut IPv6 est propagée.
+Branch-3#show ipv6 --> EX  ::/0 [170/7289856]via FE80::1, Serial0/0/0
+Branch-4#show ipv6 --> EX  ::/0 [170/7289856]via FE80::1, Serial0/0/1
