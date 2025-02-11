@@ -1,0 +1,89 @@
+Part 1: Addressing Table Documentation
+
+PC1:
+
+IPv4 Address: 10.10.1.98
+Subnet Mask: 255.255.255.224
+Default Gateway: 10.10.1.97
+
+IPv6 Address: 2001:db8:1:1::2
+Subnet Prefix: /64
+Default Gateway: 2001:db8:1:1::1
+
+PC2:
+
+IPv4 Address: 10.10.1.20
+Subnet Mask: 255.255.255.240
+Default Gateway: 10.10.1.17
+
+IPv6 Address: 2001:db8:1:4::a
+Subnet Prefix: /64
+Default Gateway: 2001:db8:1:4::1
+
+Part 2: Test Connectivity Using Ping
+
+IPv4 Ping Results:
+
+PC1 to PC2: Successful ✔️
+
+PC2 to PC1: Successful ✔️
+
+IPv6 Ping Results:
+
+PC1 to PC2: Successful ✔️
+
+PC2 to PC1: Successful ✔️
+
+Part 3: Discover the Path by Tracing the Route
+
+IPv4 Tracert Results:
+
+PC1 to PC2:
+
+Addresses Encountered:
+
+10.10.1.97 (R1 G0/0)
+
+10.10.1.5 (R2 S0/0/0)
+
+10.10.1.10 (R3 S0/0/1)
+
+10.10.1.20 (PC2)
+
+PC2 to PC1:
+
+Addresses Encountered:
+
+10.10.1.17 (R3 G0/0)
+
+10.10.1.9 (R2 S0/0/1)
+
+10.10.1.6 (R1 S0/0/1)
+
+10.10.1.98 (PC1)
+
+IPv6 Tracert Results:
+
+PC1 to PC2:
+
+Addresses Encountered:
+
+2001:db8:1:1::1 (R1 G0/0)
+
+2001:db8:1:2::1 (R2 S0/0/0)
+
+2001:db8:1:3::2 (R3 S0/0/1)
+
+2001:db8:1:4::a (PC2)
+
+PC2 to PC1:
+
+Addresses Encountered:
+
+2001:db8:1:4::1 (R3 G0/0)
+
+2001:db8:1:3::1 (R2 S0/0/1)
+
+2001:db8:1:2::2 (R1 S0/0/1)
+
+2001:db8:1:1::2 (PC1)
