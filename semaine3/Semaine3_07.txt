@@ -1,0 +1,34 @@
+
+Router>en
+Router#conf t
+Router(config)#hostname S1-RT-01
+S1-RT-01(config)#ipv6 unicast-routing
+S1-RT-01(config)#int g0/0/0
+S1-RT-01(config-if)#ipv6 enable 
+S1-RT-01(config-if)#no ipv6 nd managed-config-flag 
+S1-RT-01(config-if)#no ipv6 nd other-config-flag 
+S1-RT-01(config-if)#ipv6 address 2001:db8:cafe:1::254/64
+S1-RT-01(config-if)#no shut
+S1-RT-01(config)#int g0/0/1
+S1-RT-01(config-if)#ipv6 enable 
+S1-RT-01(config-if)#no ipv6 nd managed-config-flag 
+S1-RT-01(config-if)#no ipv6 nd other-config-flag 
+S1-RT-01(config-if)#ipv6 address 2001:db8:cafe:12::1/64
+S1-RT-01(config-if)#no shut
+
+Router>en
+Router#conf t
+Router(config)#hostname S2-RT-01
+S2-RT-01(config)#ipv6 unicast-routing
+S2-RT-01(config)#int g0/0/0
+S2-RT-01(config-if)#ipv6 enable
+S2-RT-01(config-if)#no ipv6 nd managed-config-flag 
+S2-RT-01(config-if)#no ipv6 nd other-config-flag 
+S2-RT-01(config-if)#ipv6 address 2001:db8:cafe:2::/64 eui-64
+S2-RT-01(config-if)#no shut
+S2-RT-01(config)#int g0/0/1
+S2-RT-01(config-if)#ipv6 enable
+S2-RT-01(config-if)#no ipv6 nd managed-config-flag 
+S2-RT-01(config-if)#no ipv6 nd other-config-flag 
+S2-RT-01(config-if)#ipv6 address 2001:db8:cafe:12::2/64
+S2-RT-01(config-if)#no shut
