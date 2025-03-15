@@ -1,0 +1,36 @@
+Router>en
+Router#conf t
+Router(config)#hostname RT-01
+RT-01(config)#int Tunnel12
+RT-01(config-if)#ipv6 add 3FFE:12::1/64
+RT-01(config-if)#ipv6 enable
+RT-01(config-if)#ipv6 ospf 1 area 0
+% IPv6 routing not enabled
+RT-01(config-if)#tunnel source g0/1
+RT-01(config-if)#tunnel destination 10.10.29.1
+RT-01(config-if)#tunnel mode ipv6ip
+
+RT-01(config)#int Tunnel13
+RT-01(config-if)#ipv6 add 3FFE:13::1/64
+RT-01(config-if)#ipv6 enable
+RT-01(config-if)#ipv6 ospf 1 area 0
+% IPv6 routing not enabled
+RT-01(config-if)#tunnel source g0/1
+RT-01(config-if)#tunnel destination 10.10.39.1
+RT-01(config-if)#tunnel mode ipv6ip
+
+RT-01(config)#ipv6 unicast-routing 
+RT-01(config)#ipv6 router ospf 1
+RT-01(config-rtr)#router-id 1.1.1.1
+RT-01(config-rtr)#passive-interface g0/0
+RT-01(config)#int g0/0
+RT-01(config-if)#ipv6 add FE80::1 link-local
+RT-01(config-if)#ipv6 add 2001:DB8:1::1/64
+RT-01(config-if)#ipv6 enable
+RT-01(config-if)#ipv6 ospf 1 area 0
+RT-01(config-if)#no shut
+RT-01(config)#int g0/1
+RT-01(config-if)#ip add 10.10.19.1 255.255.255.0
+RT-01(config-if)#no shut
+RT-01(config)#router ospf 1
+RT-01(config-router)#network 10.10.19.1 0.0.0.255 area 0
