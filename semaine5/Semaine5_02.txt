@@ -1,0 +1,32 @@
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname PC-01
+PC-01(config)#int Tunnel0
+PC-01(config-if)#ipv6 address 2001:DB8:1::1/64
+PC-01(config-if)#ipv6 enable
+PC-01(config-if)#tunnel source g0/0
+PC-01(config-if)#tunnel destination 192.168.1.254
+PC-01(config-if)#tunnel mode ipv6ip
+PC-01(config-if)#ipv6 route ::/0 2001:DB8:1::254
+PC-01(config)#int g0/0
+PC-01(config-if)#ip add 192.168.1.254 255.255.255.0
+PC-01(config-if)#no ip add 192.168.1.254 255.255.255.0
+PC-01(config-if)#ip add 192.168.1.1 255.255.255.0
+PC-01(config-if)#no shut
+
+Router>en
+Router#conf t
+Router(config)#hostname RT-01
+RT-01(config)#int Tunnel0
+RT-01(config-if)#ipv6 add 2001:DB8:1::254/64
+RT-01(config-if)#ipv6 enable 
+RT-01(config-if)#tunnel source g0/0
+RT-01(config-if)#tunnel mode ipv6ip isatap
+RT-01(config-if)#tunnel destination 192.168.1.1
+RT-01(config)#int g0/0
+RT-01(config-if)#ip add 192.168.1.254 255.255.255.0
+RT-01(config-if)#no shut
+RT-01(config)#int g0/1
+RT-01(config-if)#ipv6 add 2001:DB8:cafe:abcd::1/64
+RT-01(config-if)#no shut
